@@ -1,0 +1,5 @@
+owner = 'AdarshIITDH'
+repo = 'CI-CD_Pipeline_Tool'
+branch = 'main'
+local_repo_path = '/home/hero/CI-CD_Pipeline_Tool/'
+access_token = 'your token'
