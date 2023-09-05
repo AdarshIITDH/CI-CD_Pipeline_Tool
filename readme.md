@@ -17,3 +17,31 @@ git push -u origin main
 
 **Task 2: Set Up an AWS EC2/Local Linux Instance with Nginx**
 
+Installing the nginx on ubuntu
+
+```
+apt update
+apt install ngnix
+systemctl status ngnix
+```
+
+![image](https://github.com/AdarshIITDH/CI-CD_Pipeline_Tool/assets/60352729/a1d2c822-6c09-4c69-bcee-65ff146bad88)
+
+![image](https://github.com/AdarshIITDH/CI-CD_Pipeline_Tool/assets/60352729/487d3563-3b49-4350-bc15-9996046a82c0)
+
+![image](https://github.com/AdarshIITDH/CI-CD_Pipeline_Tool/assets/60352729/399009df-c728-4a40-9ffc-23aa2ea51cae)
+
+
+** Task 3: Write a Python Script to Check for New Commits**
+
+ Create a Python script to check for new commits using the GitHub API.
+
+ Note: Make sure that you dont paste the api token in a file that get pushed to github by any means.
+
+
+
+
+
+
+
+
