@@ -60,7 +60,7 @@ Create a cron job to run the Python script at regular intervals.
 
 Method 1
 
-use a bash script 
+use a bash script in cron job to run the python script that will use the github api for new commit is there is a new commit then copy the desired file in nginx directory.
 
 ```
 Crontab -e
@@ -68,6 +68,9 @@ Crontab -e
 ```
 
 Method 2
+
+Directly run the python script in the ccron job
+
 ```
 Crontab -e
 */15 * * * * /usr/bin/python3 /path/to/check_commit.py
