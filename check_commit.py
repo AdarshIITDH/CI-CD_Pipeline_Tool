@@ -11,18 +11,7 @@ repo = credentials.repo
 branch = credentials.branch
 local_repo_path = credentials.local_repo_path
 access_token = credentials.access_token
-
-# GitHub repository details
-owner = 'AdarshIITDH'
-repo = 'CI-CD_Pipeline_Tool'
-branch = 'main'
-
-# Paths
-local_repo_path = '/home/hero/CI-CD_Pipeline_Tool/'
-
-# # GitHub Personal Access Token
-access_token = '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'
-
+nginx_path = '/var/www/html/'
 
 # API request headers
 headers = {
@@ -49,7 +38,32 @@ else:
 
 if latest_commit_hash and latest_commit_hash != previous_commit_hash:
     print("New commit detected:", latest_commit_hash)
+    
+    #method 1: using the bash script to clone the repo to ngnix folder
     subprocess.run(["bash","/home/hero/cicdtool/deploy.sh"])
+
+    #Method 2 : check if the repo is already there if not then clone it.
+    # Clone or pull the repository
+    if os.path.exists(local_repo_path):
+        repo = Repo(local_repo_path)
+        repo.remotes.origin.pull()
+    else:
+        repo = Repo.clone_from(f'https://github.com/{owner}/{repo}.git', local_repo_path)
+
+    # Check if index.html has changed
+    if repo.git.diff(previous_commit_hash, latest_commit_hash, '--', file_to_copy):
+        src_path = os.path.join(local_repo_path, file_to_copy)
+        dest_path = os.path.join(nginx_path, file_to_copy)
+        if os.path.exists(src_path):
+            shutil.copy(src_path, dest_path)
+            print("Copied index.html to Nginx folder.")
+    else:
+        print("No changes in index.html.")
+
+    # Update the previous commit hash
+    with open(previous_commit_hash_file, 'w') as file:
+        file.write(latest_commit_hash)
+
 
 else:
     print("No new commits.")
