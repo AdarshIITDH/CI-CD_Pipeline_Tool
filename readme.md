@@ -58,9 +58,19 @@ Note: Make sure the scripts have executable permission
 
 Create a cron job to run the Python script at regular intervals.
 
+Method 1
+
+use a bash script 
+
 ```
 Crontab -e
-*/15 * * * * /usr/bin/python3 /path/to/check_commits_and_deploy.py
+*/15 * * * *  /path/to/deploy_final.py
+```
+
+Method 2
+```
+Crontab -e
+*/15 * * * * /usr/bin/python3 /path/to/check_commit.py
 ```
 
 Note: this make the python script to run in every 15 min
